@@ -1,57 +1,23 @@
-// src/App.js
-import React from 'react';
-import DynamicTable from './components/DynamicTable.js';
-import './components/CrudTable.css'
-
+import "./App.css";
+import Create from "./components/Create";
+import Navbar from "./components/Navbar";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Read from "./components/Read";
+import Update from "./components/Update";
 
 function App() {
-  const columns = [
-    { title: 'ID', dataIndex: 'id' },
-    { title: 'Name', dataIndex: 'name' },
-    { title: 'Age', dataIndex: 'age' },
-  ];
-  const apiUrl = 'https://mocki.io/v1/1fd0ed0a-8463-4d1b-961f-653c4049a9af'; 
-
   return (
-    <div className="container mt-5">
-      <h1>Dynamic Table Example</h1>
-      
-      <DynamicTable columns={columns} apiUrl={apiUrl} 
-      pagination={{
-        pageSize: 5,
-      }}
-      scroll={{
-        y: 120,
-      }}
-      />
+    <div className="App">
+      <BrowserRouter>
+        <Navbar />
+        <Routes>
+          <Route exact path="/" element={<Create />} />
+          <Route exact path="/read" element={<Read />} />
+          <Route exact path="/edit/:id" element={<Update />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
+
 export default App;
-
-
-// src/App.js
-// import React from 'react';
-// import DynamicTable from './components/DynamicTable';
-
-// function App() {
-//   const columns = ['ID', 'Name', 'Age'];
-//   const data = [
-//     { ID: 1, Name: 'John Doe', Age: 30 },
-//     { ID: 2, Name: 'Jane Smith', Age: 25 },
-//     { ID: 3, Name: 'Alex Demie', Age: 23 }
-//   ];
-
-//   return (
-//     <div className="container mt-5">
-//       <h1>Dynamic Table Example</h1>
-//       <DynamicTable columns={columns} data={data} />
-//     </div>
-//   );
-// }
-
-// export default App;
-
-
-
-
